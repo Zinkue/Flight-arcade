@@ -11,11 +11,11 @@ from pygame.locals import (
 class Player(pygame.sprite.Sprite):
     def __init__(self, width, height):
         super(Player, self).__init__()
-        self.surface = pygame.Surface((50, 20))
-        self.surface.fill((255, 255, 255))
-        self.rect = self.surface.get_rect()
         self.width = width
         self.height = height
+        self.surface = pygame.Surface((20, 50))
+        self.surface.fill((255, 255, 255))
+        self.rect = self.surface.get_rect(center=(self.width/2, self.height))
 
     # Move the player
     def update_position(self, pressed_keys):

@@ -11,8 +11,8 @@ from player import Player
 pygame.init()
 
 # Define constants
-screen_width = 800
-screen_height = 600
+screen_width = 500
+screen_height = 650
 
 # Create the screen
 screen = pygame.display.set_mode((screen_width, screen_height))
