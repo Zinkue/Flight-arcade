@@ -8,6 +8,7 @@ from pygame.locals import (
     KEYDOWN,
     QUIT,
 )
+from player import Player
 
 
 # Initialize the game
@@ -19,6 +20,12 @@ screen_height = 600
 
 # Create the screen
 screen = pygame.display.set_mode((screen_width, screen_height))
+screen.fill((0, 0, 0))
+
+# Initialize the player and draw it on the screen
+player = Player()
+screen.blit(player.surface, player.rect)
+pygame.display.flip()
 
 # Create the loop
 running = True
