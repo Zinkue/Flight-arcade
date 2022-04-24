@@ -6,6 +6,7 @@ from pygame.locals import (
 )
 from player import Player
 from enemy import Enemy
+from planet import Planet
 
 
 # Initialize the game
@@ -18,6 +19,9 @@ screen_height = 650
 # Create the screen
 screen = pygame.display.set_mode((screen_width, screen_height))
 
+background = pygame.image.load("images/background_stars.png")
+background = pygame.transform.scale(background, (screen_width, screen_height))
+
 # Setup the clock for framerate
 clock = pygame.time.Clock()
 
@@ -25,11 +29,16 @@ clock = pygame.time.Clock()
 ADDENEMY = pygame.USEREVENT + 1
 pygame.time.set_timer(ADDENEMY, 250)
 
+# Create a custom event to add a new planet
+ADDPLANET = pygame.USEREVENT + 2
+pygame.time.set_timer(ADDPLANET, 5000)
+
 # Initialize the player
 player = Player(screen_width, screen_height)
 
-# Create the groups for all sprites and other for the enemies
+# Create the groups for all sprites, other for the enemies and other for the planets
 enemies = pygame.sprite.Group()
+planets = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
 
@@ -37,6 +46,7 @@ all_sprites.add(player)
 running = True
 
 while running:
+    screen.blit(background, (0, 0))
     for event in pygame.event.get():
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
@@ -49,6 +59,10 @@ while running:
             new_enemy = Enemy(screen_width, screen_height)
             enemies.add(new_enemy)
             all_sprites.add(new_enemy)
+        elif event.type == ADDPLANET:
+            new_planet = Planet(screen_width, screen_height)
+            planets.add(new_planet)
+            all_sprites.add(new_planet)
 
     # Get user input
     pressed_keys = pygame.key.get_pressed()
@@ -56,6 +70,9 @@ while running:
 
     # Update enemy position
     enemies.update()
+
+    # Update planet position
+    planets.update()
 
     for entity in all_sprites:
         screen.blit(entity.surface, entity.rect)
