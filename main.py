@@ -1,9 +1,5 @@
 import pygame
 from pygame.locals import (
-    K_UP,
-    K_DOWN,
-    K_LEFT,
-    K_RIGHT,
     K_ESCAPE,
     KEYDOWN,
     QUIT,
@@ -20,12 +16,9 @@ screen_height = 600
 
 # Create the screen
 screen = pygame.display.set_mode((screen_width, screen_height))
-screen.fill((0, 0, 0))
 
 # Initialize the player and draw it on the screen
-player = Player()
-screen.blit(player.surface, player.rect)
-pygame.display.flip()
+player = Player(screen_width, screen_height)
 
 # Create the loop
 running = True
@@ -37,3 +30,12 @@ while running:
                 running = False
         elif event.type == QUIT:
             running = False
+
+    pressed_keys = pygame.key.get_pressed()
+
+    player.update_position(pressed_keys)
+
+    screen.blit(player.surface, player.rect)
+    pygame.display.flip()
+
+    screen.fill((0, 0, 0))
