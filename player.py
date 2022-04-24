@@ -3,7 +3,8 @@ from pygame.locals import (
     K_UP,
     K_DOWN,
     K_LEFT,
-    K_RIGHT
+    K_RIGHT,
+    RLEACCEL
 )
 
 
@@ -13,8 +14,8 @@ class Player(pygame.sprite.Sprite):
         super(Player, self).__init__()
         self.width = width
         self.height = height
-        self.surface = pygame.Surface((20, 50))
-        self.surface.fill((255, 255, 255))
+        self.surface = pygame.image.load("images/ship_1.png").convert()
+        self.surface.set_colorkey((0, 0, 0), RLEACCEL)
         self.rect = self.surface.get_rect(center=(self.width/2, self.height))
 
     # Move the player
