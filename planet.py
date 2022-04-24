@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import RLEACCEL
 import random
 
+
 class Planet(pygame.sprite.Sprite):
     def __init__(self, width, height):
         super(Planet, self).__init__()
@@ -19,6 +20,7 @@ class Planet(pygame.sprite.Sprite):
                 random.randint(-125, -75))
         )
         self.speed = 2
+        self._layer = 1
 
     def update(self):
         self.rect.move_ip(0, self.speed)

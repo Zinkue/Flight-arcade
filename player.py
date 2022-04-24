@@ -17,6 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.surface = pygame.image.load("images/ship_1.png").convert()
         self.surface.set_colorkey((0, 0, 0), RLEACCEL)
         self.rect = self.surface.get_rect(center=(self.width/2, self.height))
+        self._layer = 3
 
     # Move the player
     def update(self, pressed_keys):

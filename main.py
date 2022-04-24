@@ -39,7 +39,7 @@ player = Player(screen_width, screen_height)
 # Create the groups for all sprites, other for the enemies and other for the planets
 enemies = pygame.sprite.Group()
 planets = pygame.sprite.Group()
-all_sprites = pygame.sprite.Group()
+all_sprites = pygame.sprite.LayeredUpdates()
 all_sprites.add(player)
 
 # Create the loop
@@ -87,7 +87,8 @@ while running:
         # Reset the game
         player = Player(screen_width, screen_height)
         enemies = pygame.sprite.Group()
-        all_sprites = pygame.sprite.Group()
+        planets = pygame.sprite.Group()
+        all_sprites = pygame.sprite.LayeredUpdates()
         all_sprites.add(player)
 
     clock.tick(60)
