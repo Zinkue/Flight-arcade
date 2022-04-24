@@ -23,5 +23,5 @@ class Enemy(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.move_ip(0, self.speed)
-        if self.rect.bottom > self.height:
+        if self.rect.top > self.height:
             self.kill()
