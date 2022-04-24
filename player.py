@@ -18,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.surface.get_rect(center=(self.width/2, self.height))
 
     # Move the player
-    def update_position(self, pressed_keys):
+    def update(self, pressed_keys):
         if pressed_keys[K_UP]:
             self.rect.move_ip(0, -5)
         if pressed_keys[K_DOWN]:

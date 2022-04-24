@@ -14,11 +14,11 @@ class Enemy(pygame.sprite.Sprite):
             center=(
                 random.randint(0, self.width),
                 # Spawn the enemy off-screen
-                random.randint(-50, -100))
+                random.randint(-100, -50))
         )
-        self.speed = random.randint(5, 25)
+        self.speed = random.randint(5, 15)
 
-    def update_position(self):
+    def update(self):
         self.rect.move_ip(0, self.speed)
         if self.rect.bottom > self.height:
             self.kill()
