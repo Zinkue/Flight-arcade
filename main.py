@@ -7,6 +7,7 @@ from pygame.locals import (
 from player import Player
 from enemy import Enemy
 from planet import Planet
+from score import Score
 
 
 # Initialize the game
@@ -33,19 +34,28 @@ pygame.time.set_timer(ADDENEMY, 250)
 ADDPLANET = pygame.USEREVENT + 2
 pygame.time.set_timer(ADDPLANET, 5000)
 
+# Create a custom event to increment the score
+ADDSCORE = pygame.USEREVENT + 3
+pygame.time.set_timer(ADDSCORE, 1000)
+
 # Initialize the player
 player = Player(screen_width, screen_height)
 
-# Create the groups for all sprites, other for the enemies and other for the planets
+# Initialize the score
+score = Score(screen_width, screen_height)
+
+# Create the groups for all sprites, enemies, planets
 enemies = pygame.sprite.Group()
 planets = pygame.sprite.Group()
 all_sprites = pygame.sprite.LayeredUpdates()
 all_sprites.add(player)
+all_sprites.add(score)
 
 # Create the loop
 running = True
 
 while running:
+    clock.tick(60)
     screen.blit(background, (0, 0))
     for event in pygame.event.get():
         if event.type == KEYDOWN:
@@ -63,6 +73,8 @@ while running:
             new_planet = Planet(screen_width, screen_height)
             planets.add(new_planet)
             all_sprites.add(new_planet)
+        elif event.type == ADDSCORE:
+            score.update()
 
     # Get user input
     pressed_keys = pygame.key.get_pressed()
@@ -86,11 +98,9 @@ while running:
 
         # Reset the game
         player = Player(screen_width, screen_height)
+        score = Score(screen_width, screen_height)
         enemies = pygame.sprite.Group()
         planets = pygame.sprite.Group()
         all_sprites = pygame.sprite.LayeredUpdates()
         all_sprites.add(player)
-
-    clock.tick(60)
-
-    screen.fill((0, 0, 0))
+        all_sprites.add(score)
