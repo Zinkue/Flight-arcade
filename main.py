@@ -62,6 +62,17 @@ while running:
 
     pygame.display.flip()
 
+    # Check for collisions between enemy and player
+    if pygame.sprite.spritecollideany(player, enemies):
+        player.kill()
+        pygame.time.delay(500)
+
+        # Reset the game
+        player = Player(screen_width, screen_height)
+        enemies = pygame.sprite.Group()
+        all_sprites = pygame.sprite.Group()
+        all_sprites.add(player)
+
     clock.tick(60)
 
     screen.fill((0, 0, 0))
