@@ -11,6 +11,8 @@ You are spaceship in the space and your goal is to
 dodge all asteroids coming towards you to get the
 maximum score.
 
+The game has a start menu and restart menu.
+
 ## Screenshots
 
 ![](images/Screenshot_1.png)
